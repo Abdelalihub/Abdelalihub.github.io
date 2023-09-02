@@ -127,7 +127,7 @@ function startDataSync() {
 			}
 			updateFunc[appId](data);
 		});
-	}, 1000);
+	}, 5000);
 
 	// change to track view
 	$('#trackBtn').click();
