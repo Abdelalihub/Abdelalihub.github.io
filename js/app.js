@@ -20,7 +20,7 @@ const locationMarker = L.marker([48.1547929, 11.5594241], {
 		iconSize: [40, 41],
 		iconAnchor: [20, 41]
 	})
-}).addTo(leafletMap);
+});
 
 // Load devices from nRFCloud api and populate list in settings view
 function loadDeviceNames() {
