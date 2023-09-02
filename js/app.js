@@ -81,6 +81,19 @@ const updateFunc = {
 		// Pan to position and leave dots as a track
 		leafletMap.panTo(pos).addLayer(L.circleMarker(pos, { radius: 4, color: '#00a9ce' }));
 	},
+		GNSS: data => {
+
+		console.log("gps", data);
+
+		const pos = {
+			lat: data.lat,
+			lng: data.lon
+		};
+
+		locationMarker.setLatLng(pos);
+		// Pan to position and leave dots as a track
+		leafletMap.panTo(pos).addLayer(L.circleMarker(pos, { radius: 4, color: '#00a9ce' }));
+	},
 	GPS: data => {
 		const pos = decodeGPS(data);
 		if (!pos) {
