@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Leaflet -->
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin="" />
+	<script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js" integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og==" crossorigin=""></script>
+
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<!-- ...Bootstrap -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/toast.css">
+
+	<title>nRF Pizza</title>
+</head>
+
+<body class="black">
+	
+	<div class="desktop-friendly-size black whole-screen d-flex flex-column">
+
+		<!-- Top bar -->
+		<div class="d-flex flex-row menu align-items-center justify-content-between pr-3 pl-3 fixed-top shadow desktop-friendly-size">
+			<h6><a id="trackBtn" class="view-btn nrf-light-blue">DASHBOARD</a></h6>
+			<img id="settingsBtn" src="images/settings_icon.svg" class="view-btn settings-icon">
+		</div>
+
+		<!-- Track view -->
+		<div id="trackView" class="d-none flex-column flex-even">
+			<div id="leaflet-map"></div>
+
+			<div class="d-flex flex-column flex-even">
+
+				<div class="d-flex flex-row flex-even border-bottom">
+
+					<div class="d-flex flex-column justify-content-center dashcard flex-even border-right"">
+						<div class="align-self-center">
+							<h6>AIR PRESSURE (kPa)</h6>
+						</div>
+						<div class="align-self-center">
+							<h1 id="air_pressure">-</h1>
+						</div>
+					</div>
+
+					<div class="d-flex flex-column justify-content-center dashcard flex-even">
+						<div class="align-self-center">
+							<h6>TEMPERATURE (&#176;C)</h6>
+						</div>
+						<div class="align-self-center">
+							<h1 id="temperature">-</h1>
+						</div>
+					</div>
+				</div>
+				
+				<div class="d-flex flex-row flex-even border-bottom">
+
+					<div class="d-flex flex-column justify-content-center dashcard flex-even border-right">
+						<div class="align-self-center">
+							<h6>BATTERY (%)</h6>
+						</div>
+						<div class="align-self-center">
+							<h1 id="battery">-</h1>
+						</div>
+					</div>
+
+					<div class="d-flex flex-column justify-content-center dashcard flex-even">
+						<div class="align-self-center">
+							<h6>AIR QUALITY</h6>
+						</div>
+						<div class="align-self-center">
+							<h1 id="air_quality">-</h1>
+						</div>
+					</div>
+				</div>
+
+
+				<div class="d-flex flex-row flex-even">
+
+					<div class="d-flex flex-column justify-content-center dashcard flex-even border-right">
+						<div class="align-self-center">
+							<h6>HUMIDITY (%)</h6>
+						</div>
+						<div class="align-self-center">
+							<h1 id="humidity">-</h1>
+						</div>
+					</div>
+
+					<div class="d-flex flex-column justify-content-center dashcard flex-even">
+						<div class="align-self-center">
+							<h6>RSRP</h6>
+						</div>
+						<div class="align-self-center">
+							<h1 id="rsrp">-</h1>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+
+		<!-- Settings view -->
+		<div id="settingsView" class="d-none align-items-center whole-width main flex-fill flex-column desktop-friendly-size">
+			<div class="card w-75 mb-4 rounded-sm top-card">
+				<div class="card-body">
+					<h5 class="card-title">Thingy:91 Credentials</h5>
+					<label for="api-key">API Key</label>
+					<textarea
+						id="api-key"
+						class="form-control mb-3"
+						aria-label="With textarea"
+						placeholder="3ce36d0b1b69a0346672a2e9be29a7645688c9f9"
+					></textarea>
+					<label for="device-name">Device Name</label>
+					<div id="device-list" class="list-group" role="tablist"></div>
+				</div>
+			</div>
+			<div class="card w-75 mb-4 rounded-sm ">
+				<div class="card-body">
+					<p class="card-text small text-muted">
+						This web app connects to the nRF Cloud via a REST API.
+						In order to use the app you must find and enter the API Key and Device Name.
+					</p>
+					<p class="card-text small text-muted">
+						Please refer to the <em>Getting Started Guide</em> in the 
+						<a href="https://nrfcloud.com/#/docs" class="nrf-blue">
+							nRF Connect for Cloud docs
+						</a>
+						for more details.
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- App specific JavaScript -->
+	<script src="js/toast.min.js"></script>
+	<script src="js/cloud-api.js" crossorigin="anonymous"></script>
+	<script src="js/app.js"></script>
+</body>
+</html>
