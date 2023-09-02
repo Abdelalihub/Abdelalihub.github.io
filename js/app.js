@@ -16,14 +16,6 @@ leafletMap.addLayer(L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}
 
 leafletMap.zoomControl.remove();
 
-const locationMarker = L.marker([63.4206897, 10.4372859], {
-	icon: L.icon({
-		iconUrl: 'images/map_pin_icon.png',
-		iconSize: [40, 41],
-		iconAnchor: [20, 41]
-	})
-}).addTo(leafletMap);
-
 // Load devices from nRFCloud api and populate list in settings view
 function loadDeviceNames() {
 	$('#device-list').empty().append('Refreshing device list...');
@@ -70,6 +62,15 @@ function decodeGPS(data) {
 const updateFunc = {
 	GROUND_FIX: data => {
 
+		const locationMarker = L.marker([63.4206897, 10.4372859], {
+			icon: L.icon({
+				iconUrl: 'images/map_pin_icon.png',
+				iconSize: [40, 41],
+				iconAnchor: [20, 41]
+			})
+		}).addTo(leafletMap);
+
+		
 		console.log("GROUND_FIX", data);
 
 		const pos = {
@@ -84,6 +85,14 @@ const updateFunc = {
 	
 	GNSS: data => {
 
+		const locationMarker = L.marker([63.4206897, 10.4372859], {
+			icon: L.icon({
+				iconUrl: 'images/map_pin_icon.png',
+				iconSize: [40, 41],
+				iconAnchor: [20, 41]
+			})
+		}).addTo(leafletMap);
+		
 		console.log("GNSS", data);
 
 		const pos = {
@@ -96,6 +105,15 @@ const updateFunc = {
 		leafletMap.panTo(pos).addLayer(L.circleMarker(pos, { radius: 4, color: '#00a9ce' }));
 	},
 	GPS: data => {
+
+		const locationMarker = L.marker([63.4206897, 10.4372859], {
+			icon: L.icon({
+				iconUrl: 'images/map_pin_icon.png',
+				iconSize: [40, 41],
+				iconAnchor: [20, 41]
+			})
+		}).addTo(leafletMap);
+		
 		const pos = decodeGPS(data);
 		if (!pos) {
 			return;
