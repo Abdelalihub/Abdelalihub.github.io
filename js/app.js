@@ -1,10 +1,8 @@
 // Global objects
 
 const api = new NRFCloudAPI(localStorage.getItem('apiKey'));
-const leafletMap = L.map('leaflet-map').setView([63.4206897, 10.4372859], 15);
-let counterInterval;
+const leafletMap = L.map('leaflet-map').setView([20, 30], 1);
 let requestInterval;
-let flipped = false;
 
 // Setup the map
 
