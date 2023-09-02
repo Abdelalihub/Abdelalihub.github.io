@@ -88,7 +88,7 @@ const updateFunc = {
 
 		const pos = {
 			lat: data.lat,
-			lng: data.lon
+			lon: data.lng,
 		};
 
 		locationMarker.setLatLng(pos);
