@@ -61,15 +61,6 @@ function decodeGPS(data) {
 // Collection of update functions for different message types of nRFCloud device messages
 const updateFunc = {
 	GROUND_FIX: data => {
-
-		const locationMarker = L.marker([63.4206897, 10.4372859], {
-			icon: L.icon({
-				iconUrl: 'images/map_pin_icon.png',
-				iconSize: [40, 41],
-				iconAnchor: [20, 41]
-			})
-		}).addTo(leafletMap);
-
 		
 		console.log("GROUND_FIX", data);
 
@@ -77,10 +68,6 @@ const updateFunc = {
 			lat: data.lat,
 			lon: data.lon
 		};
-
-		locationMarker.setLatLng(pos);
-		// Pan to position and leave dots as a track
-		leafletMap.panTo(pos).addLayer(L.circleMarker(pos, { radius: 4, color: '#00a9ce' }));
 	},
 	
 	GNSS: data => {
@@ -148,7 +135,7 @@ function startDataSync() {
 
 	// check nRFCloud messages from the device every 5 seconds
 	requestInterval = setInterval(async () => {
-		const { items } = await api.getMessages(localStorage.getItem('deviceId') || '');
+		const { items } = await api.getMessages(localStorage.getItem('deviceId') || 'nrf-350457790090821');
 
 		(items || [])
 		.map(({ message }) => message)
