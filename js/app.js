@@ -14,6 +14,14 @@ leafletMap.addLayer(L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}
 
 leafletMap.zoomControl.remove();
 
+const locationMarker = L.marker([48.1547929, 11.5594241], {
+	icon: L.icon({
+		iconUrl: 'images/map_pin_icon.png',
+		iconSize: [40, 41],
+		iconAnchor: [20, 41]
+	})
+}).addTo(leafletMap);
+
 // Load devices from nRFCloud api and populate list in settings view
 function loadDeviceNames() {
 	$('#device-list').empty().append('Refreshing device list...');
@@ -66,17 +74,13 @@ const updateFunc = {
 			lat: data.lat,
 			lon: data.lon
 		};
+
+		locationMarker.setLatLng(pos);
+		// Pan to position and leave dots as a track
+		leafletMap.panTo(pos).addLayer(L.circleMarker(pos, { radius: 4, color: '#00a9ce' }));
 	},
 	
 	GNSS: data => {
-
-		const locationMarker = L.marker([63.4206897, 10.4372859], {
-			icon: L.icon({
-				iconUrl: 'images/map_pin_icon.png',
-				iconSize: [40, 41],
-				iconAnchor: [20, 41]
-			})
-		}).addTo(leafletMap);
 		
 		console.log("GNSS", data);
 
@@ -91,14 +95,6 @@ const updateFunc = {
 	},
 	GPS: data => {
 
-		const locationMarker = L.marker([63.4206897, 10.4372859], {
-			icon: L.icon({
-				iconUrl: 'images/map_pin_icon.png',
-				iconSize: [40, 41],
-				iconAnchor: [20, 41]
-			})
-		}).addTo(leafletMap);
-		
 		const pos = decodeGPS(data);
 		if (!pos) {
 			return;
