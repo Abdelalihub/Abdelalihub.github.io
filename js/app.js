@@ -70,7 +70,7 @@ function decodeGPS(data) {
 const updateFunc = {
 	GROUND_FIX: data => {
 
-		console.log("gps", data);
+		console.log("GROUND_FIX", data);
 
 		const pos = {
 			lat: data.lat,
@@ -81,9 +81,10 @@ const updateFunc = {
 		// Pan to position and leave dots as a track
 		leafletMap.panTo(pos).addLayer(L.circleMarker(pos, { radius: 4, color: '#00a9ce' }));
 	},
-		GNSS: data => {
+	
+	GNSS: data => {
 
-		console.log("gps", data);
+		console.log("GNSS", data);
 
 		const pos = {
 			lat: data.lat,
@@ -140,7 +141,7 @@ function startDataSync() {
 			}
 			updateFunc[appId](data);
 		});
-	}, 5000);
+	}, 3000);
 
 	// change to track view
 	$('#trackBtn').click();
@@ -149,7 +150,7 @@ function startDataSync() {
 // Main function
 $(document).ready(() => {
 	// Set initial values
-	$('#api-key').val(localStorage.getItem('apiKey') || '');
+	$('#api-key').val(localStorage.getItem('apiKey') || '7d0d7fb9f46f4b3b7b72b52c1d40efd079974308');
 	$('body').tooltip({ selector: '[data-toggle="tooltip"]' });
 
 	// Tab bar view selector buttons:
