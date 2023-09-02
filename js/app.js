@@ -16,7 +16,7 @@ leafletMap.addLayer(L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}
 
 leafletMap.zoomControl.remove();
 
-const locationMarker = L.marker({
+const locationMarker = L.marker([63.4206897, 10.4372859], {
 	icon: L.icon({
 		iconUrl: 'images/map_pin_icon.png',
 		iconSize: [40, 41],
@@ -141,7 +141,7 @@ function startDataSync() {
 			}
 			updateFunc[appId](data);
 		});
-	}, 3000);
+	}, 5000);
 
 	// change to track view
 	$('#trackBtn').click();
