@@ -124,7 +124,7 @@ const updateFunc = {
 	HUMID: data => {
 		$('#humidity').text(data);
 	},
-	
+
 	RSRP: data => {
 		$('#rsrp').text(data);
 	}
