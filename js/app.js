@@ -93,6 +93,7 @@ const updateFunc = {
 		// Pan to position and leave dots as a track
 		leafletMap.panTo(pos).addLayer(L.circleMarker(pos, { radius: 4, color: '#00a9ce' }));
 	},
+
 	GPS: data => {
 
 		const pos = decodeGPS(data);
@@ -103,21 +104,27 @@ const updateFunc = {
 		// Pan to position and leave dots as a track
 		leafletMap.panTo(pos).addLayer(L.circleMarker(pos, { radius: 4, color: '#00a9ce' }));
 	},
+
 	TEMP: data => {
 		$('#temperature').text(data);
 	},
+
 	AIR_PRESS: data => {
 		$('#air_pressure').text(data);
 	},
+
 	BATTERY: data => {
 		$('#battery').text(data);
 	},
+
 	AIR_QUAL: data => {
 		$('#air_quality').text(data);
 	},
+
 	HUMID: data => {
 		$('#humidity').text(data);
 	},
+	
 	RSRP: data => {
 		$('#rsrp').text(data);
 	}
