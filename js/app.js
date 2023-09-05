@@ -127,16 +127,29 @@ const updateFunc = {
 
 	RSRP: data => {
 		$('#rsrp').text(data);
-	}
+	},
+	
+	FCM1: data => {
+		$('#fcm_1').text(data);
+	},
+
+	FCM2: data => {
+		$('#fcm_2').text(data);
+	},
 }
 
 function startDataSync() {
 	// stop previous intervals if there was an order already
-	//clearInterval(requestInterval);
+	clearInterval(requestInterval);
 
 	// check nRFCloud messages from the device every 5 seconds
-	//requestInterval = setInterval(async () => {
-		const { items } = api.getMessages(localStorage.getItem('deviceId') || 'nrf-350457790090821');
+	requestInterval = setInterval(async () => {
+
+		console.log("request done");
+
+		const { items } = await api.getMessages(localStorage.getItem('deviceId') || 'nrf-350457790090821');
+
+		console.log("items", items);
 
 		(items || [])
 		.map(({ message }) => message)
@@ -147,7 +160,8 @@ function startDataSync() {
 			}
 			updateFunc[appId](data);
 		});
-	//}, 600000);
+
+	}, 5000);
 
 	// change to track view
 	$('#trackBtn').click();
@@ -156,7 +170,7 @@ function startDataSync() {
 // Main function
 $(document).ready(() => {
 	// Set initial values
-	$('#api-key').val(localStorage.getItem('apiKey') || '7d0d7fb9f46f4b3b7b72b52c1d40efd079974308');
+	$('#api-key').val(localStorage.getItem('apiKey') || '957b9930-adb5-4d9b-97d9-b8079238db52');
 	$('body').tooltip({ selector: '[data-toggle="tooltip"]' });
 
 	// Tab bar view selector buttons:
