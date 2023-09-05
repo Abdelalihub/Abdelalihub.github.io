@@ -132,11 +132,11 @@ const updateFunc = {
 
 function startDataSync() {
 	// stop previous intervals if there was an order already
-	clearInterval(requestInterval);
+	//clearInterval(requestInterval);
 
 	// check nRFCloud messages from the device every 5 seconds
-	requestInterval = setInterval(async () => {
-		const { items } = await api.getMessages(localStorage.getItem('deviceId') || 'nrf-350457790090821');
+	//requestInterval = setInterval(async () => {
+		const { items } = api.getMessages(localStorage.getItem('deviceId') || 'nrf-350457790090821');
 
 		(items || [])
 		.map(({ message }) => message)
@@ -147,7 +147,7 @@ function startDataSync() {
 			}
 			updateFunc[appId](data);
 		});
-	}, 60000);
+	//}, 600000);
 
 	// change to track view
 	$('#trackBtn').click();
