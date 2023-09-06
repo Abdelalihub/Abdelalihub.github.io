@@ -186,7 +186,7 @@ function startDataSync() {
 // Main function
 $(document).ready(() => {
 	// Set initial values
-	$('#api-key').val(localStorage.getItem('apiKey') || '957b9930-adb5-4d9b-97d9-b8079238db52');
+	$('#api-key').val(localStorage.getItem('apiKey') || 'd90f9e9f0ce737fb20f7abd37eb335e949325d50');
 	$('body').tooltip({ selector: '[data-toggle="tooltip"]' });
 
 	// Tab bar view selector buttons:
