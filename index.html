@@ -104,23 +104,67 @@
 
 				</div>
 
-				<div class="d-flex flex-row flex-even">
+				<div class="d-flex flex-row flex-even border-bottom">
 
 					<div class="d-flex flex-column justify-content-center dashcard flex-even border-right">
 						<div class="align-self-center">
-							<h6>FLOW_1(l/min)</h6>
+							<h6>FCM1 RATE(l/min)</h6>
 						</div>
 						<div class="align-self-center">
-							<h1 id="fcm_1">-</h1>
+							<h1 id="fcm1_rate">-</h1>
 						</div>
 					</div>
 
 					<div class="d-flex flex-column justify-content-center dashcard flex-even">
 						<div class="align-self-center">
-							<h6>FLOW_2(l/min)</h6>
+							<h6>FCM2 RATE(l/min)</h6>
 						</div>
 						<div class="align-self-center">
-							<h1 id="fcm_2">-</h1>
+							<h1 id="fcm2_rate">-</h1>
+						</div>
+					</div>
+
+				</div>
+
+				<div class="d-flex flex-row flex-even border-bottom">
+
+					<div class="d-flex flex-column justify-content-center dashcard flex-even border-right">
+						<div class="align-self-center">
+							<h6>FCM1 VOLUME(l)</h6>
+						</div>
+						<div class="align-self-center">
+							<h1 id="fcm1_litters">-</h1>
+						</div>
+					</div>
+
+					<div class="d-flex flex-column justify-content-center dashcard flex-even">
+						<div class="align-self-center">
+							<h6>FCM2 VOLUME(l)</h6>
+						</div>
+						<div class="align-self-center">
+							<h1 id="fcm2_litters">-</h1>
+						</div>
+					</div>
+
+				</div>
+
+				<div class="d-flex flex-row flex-even">
+
+					<div class="d-flex flex-column justify-content-center dashcard flex-even border-right">
+						<div class="align-self-center">
+							<h6>FCM1 CALIB</h6>
+						</div>
+						<div class="align-self-center">
+							<h1 id="fcm1_calib">-</h1>
+						</div>
+					</div>
+
+					<div class="d-flex flex-column justify-content-center dashcard flex-even">
+						<div class="align-self-center">
+							<h6>FCM2 CALIB</h6>
+						</div>
+						<div class="align-self-center">
+							<h1 id="fcm2_calib">-</h1>
 						</div>
 					</div>
 
@@ -139,7 +183,7 @@
 						id="api-key"
 						class="form-control mb-3"
 						aria-label="With textarea"
-						placeholder="3ce36d0b1b69a0346672a2e9be29a7645688c9f9"
+						placeholder="d90f9e9f0ce737fb20f7abd37eb335e949325d50"
 					></textarea>
 					<label for="device-name">Device Name</label>
 					<div id="device-list" class="list-group" role="tablist"></div>

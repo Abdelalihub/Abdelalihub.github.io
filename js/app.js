@@ -129,13 +129,29 @@ const updateFunc = {
 		$('#rsrp').text(data);
 	},
 	
-	FCM1: data => {
-		$('#fcm_1').text(data);
+	FCM_FLOW_RATE1: data => {
+		$('#fcm1_rate').text(data);
 	},
 
-	FCM2: data => {
-		$('#fcm_2').text(data);
+	FCM_FLOW_RATE2: data => {
+		$('#fcm2_rate').text(data);
 	},
+
+	FCM_LITTERS_MEAS1: data => {
+		$('#fcm1_litters').text(data);
+	},
+
+	FCM_LITTERS_MEAS2: data => {
+		$('#fcm2_litters').text(data);
+	},
+
+	APP_ID_CALIB1: data => {
+		$('#fcm1_calib').text(data);
+	},
+
+	APP_ID_CALIB2: data => {
+		$('#fcm2_calib').text(data);
+	}
 }
 
 function startDataSync() {
