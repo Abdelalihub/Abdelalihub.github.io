@@ -145,11 +145,11 @@ const updateFunc = {
 		$('#fcm2_litters').text(data);
 	},
 
-	APP_ID_CALIB1: data => {
+	FCM_CALIB1: data => {
 		$('#fcm1_calib').text(data);
 	},
 
-	APP_ID_CALIB2: data => {
+	FCM_CALIB2: data => {
 		$('#fcm2_calib').text(data);
 	}
 }
